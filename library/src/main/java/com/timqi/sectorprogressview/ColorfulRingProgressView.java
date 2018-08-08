@@ -24,8 +24,11 @@ public class ColorfulRingProgressView extends View {
     private float mStartAngle = 0;
     private int mFgColorStart = 0xffffe400;
     private int mFgColorEnd = 0xffff4800;
+    private int mFgColorStart50 = 0xffff4899;
+    private int mFgColorEnd50 = 0xffff4899;
 
     private LinearGradient mShader;
+    private LinearGradient mShader2;
     private Context mContext;
     private RectF mOval;
     private Paint mPaint;
@@ -75,7 +78,11 @@ public class ColorfulRingProgressView extends View {
         mPaint.setColor(mBgColor);
         canvas.drawArc(mOval, 0, 360, false, mPaint);
 
-        mPaint.setShader(mShader);
+        if (mPercent > 50) {
+            mPaint.setShader(mShader);
+        } else {
+            mPaint.setShader(mShader2);
+        }
         canvas.drawArc(mOval, mStartAngle, mPercent * 3.6f, false, mPaint);
     }
 
@@ -87,6 +94,8 @@ public class ColorfulRingProgressView extends View {
 
         mShader = new LinearGradient(mOval.left, mOval.top,
                 mOval.left, mOval.bottom, mFgColorStart, mFgColorEnd, Shader.TileMode.MIRROR);
+        mShader2 = new LinearGradient(mOval.left, mOval.top,
+                mOval.left, mOval.bottom, mFgColorStart50, mFgColorEnd50, Shader.TileMode.MIRROR);
     }
 
     public float getPercent() {
