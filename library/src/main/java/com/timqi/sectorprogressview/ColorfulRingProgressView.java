@@ -25,7 +25,7 @@ public class ColorfulRingProgressView extends View {
     private int mFgColorStart = 0xffffe400;
     private int mFgColorEnd = 0xffff4800;
     private int mFgColorStart50 = 0xffff4899;
-    private int mFgColorEnd50 = 0xffff4899;
+    private int mFgColorEnd50 = 0xffff4800;
 
     private LinearGradient mShader;
     private LinearGradient mShader2;
